@@ -62,23 +62,21 @@ export const burger = {
   name: "Burger", 
   price: 18, 
   category: "Lunch", 
-  discount: [[ 'teacher', .75],[ 'student', .75],[ 'public', .90]
-  ]
+  discount (type){
+    const discounts = [[ 'teacher', .75],[ 'student', .75],[ 'public', .90]]
+    var total = burger.price;
+    for (let i=0; i<discounts.length; i++){
+      if (discounts[i].indexOf(type) === 0) {
+        var dis = discounts[i][1];
+        total = total*dis;
+        
+      }
+    }
+    return total
+  }
 }
 
-function discount(type){
-  var total = burger.price;
-  for (let i=0; i<burger.discount.length; i++){
-    if (burger.discount[i].indexOf(type) === 0) {
-      var dis = burger.discount[i][1];
-      total = total*dis;
-      
-    }
-  }
-  return total
-};
-
-console.log(discount('teacher'));
+console.log(burger.discount('student'));
 
 
 
